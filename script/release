@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+echo "Building for windows..."
+env GOOS=windows go build -o SimplerHTTPServer.exe   .
+zip SimplerHTTPServer.windows.zip SimplerHTTPServer.exe
+rm SimplerHTTPServer.exe
+
+echo "Building for darwin..."
+env GOOS=darwin  go build -o SimplerHTTPServer   .
+gzip SimplerHTTPServer
+mv SimplerHTTPServer.gz SimplerHTTPServer.darwin.gz
+
+echo "Building for linux..."
+env GOOS=linux   go build -o SimplerHTTPServer   .
+gzip SimplerHTTPServer
+mv SimplerHTTPServer.gz SimplerHTTPServer.linux.gz
+
+echo "Done."
